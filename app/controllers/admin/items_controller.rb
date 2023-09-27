@@ -1,6 +1,6 @@
 class Admin::ItemsController < ApplicationController
   def index
-    @item = Item.new
+    @items = Item.all
   end
 
   def new
@@ -8,26 +8,36 @@ class Admin::ItemsController < ApplicationController
   end
 
   def create
-    #アイテム　ストロングパラメータで受けとったふぉーむの情報
-    #情報の保存
-    #遷移先かく
-    
+    @item = Item.new(item_params)
+    if  @item.save
+      redirect_to admin_item_path(@item.id)
+    else
+      render :admin_new
+    end
   end
 
   def show
+    @item = Item.new
+    @item = Item.find(params[:id])
     
   end
 
   def edit
-  
+    @item = Item.find(params[:id])
   end
 
   def update
-  
+    @item = Item.find(params[:id])
+    if @item.update(item_params)
+      redirect_to admin_item_path(@item.id)
+    else
+      render :admin_edit
+    end
   end
- 
- def item_params
-    #params.require(:item).permit(カラム)
+
+private
+  def item_params
+    params.require(:item).permit(:name, :introduction, :price, :image)
   end
 
 end

@@ -1,2 +1,34 @@
-<h1>Admin::Items#show</h1>
-<p>Find me in app/views/admin/items/show.html.erb</p>
+<div class="container px-5 px-sm-0">
+  <div class="row">
+    <div class="col-md-3">
+      <h2>商品詳細</h2>
+        <%= image_tag @item.image, size: "200x200" %>
+
+     </div>
+
+     <div class="col-md-8 offset-md-1">
+      <table>
+        <tbody>
+          <tr>
+            <th>商品名</th>
+            <th><%= @item.name %>
+          </tr>
+
+            <tr>
+              <th>商品説明</th>
+              <th><%= @item.introduction %></th>
+            </tr>
+
+          <tr>
+            <th>税込価格（税抜き価格）</th>
+            <th><%= @item.price %></th>
+          </tr>
+
+          <td class="btn btm-sm btn-success">
+              <%= link_to "編集する", edit_admin_item_path(@item) %>
+          </td>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
