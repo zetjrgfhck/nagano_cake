@@ -1,0 +1,34 @@
+<div class="row">
+  <div class="col-md-3">
+    <div class="col-md-8 offset-md-1">
+      <table>
+        <tbody>
+          <tr>
+            <th><%= image_tag @item.get_image(100, 100) %></th>
+          </tr>
+
+          <tr>
+            <th><%= @item.name %></th>
+          </tr>
+
+          <tr>
+            <th><%= @item.introduction %></th>
+          </tr>
+
+          <tr>
+            <th>¥<%= @item.price %>（税込）</th>
+          </tr>
+
+          <tr>
+             <%= form_with model: @cart_item do |f| %>
+            <th><%= f.select :amount, [[1, 1], [2, 2], [3, 3], [4, 4], [5, 5]],include_blank: "個数を選択" %>
+                <%= f.hidden_field :item_id, :value => @item.id %>
+            </th>
+          </tr>
+            <%= f.submit "カートに入れる" %>
+            <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

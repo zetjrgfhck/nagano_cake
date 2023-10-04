@@ -1,2 +1,54 @@
-<h1>Admin::Customers#edit</h1>
-<p>Find me in app/views/admin/customers/edit.html.erb</p>
+<h2<%= @customer.last_name + @customer.first_name %>さんの会員情報編集></h2>
+  <%= form_with model: @customer do |f| %>
+
+  <table>
+    <tr>
+        <th>会員ID</th>
+        <th><%= @customer.id %></th>
+    </tr>
+
+  <tr>
+    <th>氏名</th>
+    <th>(姓)<%= f.text_field :last_name  %></th>
+    <th>(名)<%= f.text_field :first_name, autofocus: true, autocomplete: "name" %></th>
+  </tr>
+
+  <tr>
+    <th>フリガナ</th>
+    <th>(セイ)<%= f.text_field :last_name_kana, autofocus: true, autocomplete: "name" %></th>
+    <th>(メイ)<%= f.text_field :first_name_kana, autofocus: true, autocomplete: "name" %></th>
+  </tr>
+
+  <tr>
+    <th>郵便番号</th>
+    <th><%= f.text_field :postal_code, autofocus: true, autocomplete: "postal_code" %></th>
+  </tr>
+
+  <tr>
+    <th>住所</th>
+    <th><%= f.text_field :address, autofocus: true, autocomplete: "address" %></th>
+  </tr>
+
+  <tr>
+    <th>電話番号</th>
+    <th><%= f.text_field :telephone_number, autofocus: true, autocomplete: "telephone_number" %></th>
+  </tr>
+
+  <tr>
+    <th>メールアドレス</th>
+    <th><%= f.text_field :email, autofocus: true, autocomplete: "email" %></th>
+  </tr>
+
+  <tr>
+    <th>会員ステータス</th>
+    <th>
+      <% if @customer.is_deleted? %>
+            退会
+        <% else %>
+            有効
+        <% end %>
+    </th>
+  </tr>
+      <%= f.submit "変更を保存" %>
+      <% end %>
+</table>

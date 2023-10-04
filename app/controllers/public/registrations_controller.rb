@@ -60,7 +60,7 @@ class Public::RegistrationsController < Devise::RegistrationsController
   #   super(resource)
   # end
   def after_sign_up_path_for(resource)
-    customer_path(resource)
+    customers_my_page_path
   end
 
   def configure_permitted_parameters

@@ -7,7 +7,7 @@ class Public::CustomersController < ApplicationController
 
   def update
     @customer = current_customer
-		  if @customer.update(customer_params)
+      if @customer.update(customer_params)
         redirect_to customers_path
       else
         render :edit
@@ -15,10 +15,12 @@ class Public::CustomersController < ApplicationController
   end
 
   def quit
-  
+
   end
 
   def leave
-  
+    current_customer.update(is_deleted: true)
+    reset_session
+    redirect_to root_path
   end
 end

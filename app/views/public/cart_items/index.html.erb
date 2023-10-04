@@ -1,0 +1,38 @@
+<h2>ショッピングカート</h2>
+<h2>カートを空にする</h2>
+<table>
+  <thead>
+    <tr>
+      <th>商品名</th>
+      <th>単価(税込)</th>
+      <th>数量</th>
+      <th>小計</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% if current_customer.cart_items.present? %>
+    <% @cart_items.each do |cart_item| %>
+    <tr>
+      <th><%= cart_item.item.name %></th>
+      <th><%= (cart_item.item.with_tax_price).to_i %></th>
+      <th>
+        <%= form_with model: cart_item, url: cart_item_update_path(cart_item), local: true, method: :patch do |f| %>
+        <%= f.number_field :amount, min: 1, max:10, id: "item_id" %>
+        <%= f.submit "変更" %>
+        <% end %>
+      </th>
+      <th>
+        <% subtotal = ((cart_item.item.price*cart_item.amount)).to_i %>
+        <%= subtotal %>
+      </th>
+          <% @total += subtotal %>
+          <% end %>
+        <% end %>
+      <th><%= link_to "削除する", cart_items_path, method: :delete,"data-confirm"=>"削除しますか?" %></th>
+      <td><%= link_to "買い物を続ける", root_path %></td>
+      <th>合計金額</th>
+      <th><%= @total %></th>
+    </tr>
+  </tbody>
+</table>

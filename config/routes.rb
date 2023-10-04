@@ -16,24 +16,22 @@ Rails.application.routes.draw do
     root to: "homes#top"
     resources :items, only: [:index, :new, :create, :show, :edit, :update]
     resources :customers, only: [:index, :show, :edit, :update]
+    resources :orders, only: [:show]
   end
 
   scope module: :public  do
     resources :items, only: [:show, :index]
-    resources :sessions, only: [:new, :create, :destroy]
-    resources :registrations, only: [:new, :create]
-    resources :sessions, only: [:show, :edit, :update, :quit, :leave]
-    resources :cart_items, only: [:index, :update, :destroy, :all_destroy, :create]
+    
+    resources :cart_items, only: [:index, :update, :destroy, :create]
+    delete "cart_items/all_destroy" => "cart_items#all_destroy"
+   
     resources :orders, only: [:new, :confirm, :thanks, :create, :index, :show]
 
-    get "customer/edit" => "/customers#edit"
-    patch "customers/update" => "customers#update"
-
-    resources :customers, only: [:show] do
-      collection  do
-        get :"quit"
-        patch :"leave"
-        end
-      end
-    end
+    get "customers/my_page" => "customers#show"
+    get "customers/informetion/edit" => "customers#edit"
+    patch "customers/informetion" => "customers#update"
+    get "customers/quit" => "customers#quit"
+    patch "customers/leave" => "customers#leave"
+  end
+    
   end
