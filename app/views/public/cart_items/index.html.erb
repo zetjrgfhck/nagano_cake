@@ -17,7 +17,7 @@
       <th><%= cart_item.item.name %></th>
       <th><%= (cart_item.item.with_tax_price).to_i %></th>
       <th>
-        <%= form_with model: cart_item, url: cart_item_update_path(cart_item), local: true, method: :patch do |f| %>
+        <%= form_with model: cart_item, url: cart_item_path(cart_item), local: true, method: :patch do |f| %>
         <%= f.number_field :amount, min: 1, max:10, id: "item_id" %>
         <%= f.submit "変更" %>
         <% end %>
@@ -30,7 +30,7 @@
           <% end %>
         <% end %>
       <th><%= link_to "削除する", cart_items_path, method: :delete,"data-confirm"=>"削除しますか?" %></th>
-      <td><%= link_to "買い物を続ける", root_path %></td>
+      <th><%= link_to "買い物を続ける", root_path %></th>
       <th>合計金額</th>
       <th><%= @total %></th>
     </tr>
