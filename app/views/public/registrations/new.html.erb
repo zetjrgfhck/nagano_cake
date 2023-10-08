@@ -6,7 +6,7 @@
   <table>
   <tr>
     <th>名前</th>
-    <th>(姓)<%= f.text_field :last_name  %></th>
+    <th>(姓)<%= f.text_field :last_name, autofocus: true, autocomplete: "name" %></th>
     <th>(名)<%= f.text_field :first_name, autofocus: true, autocomplete: "name" %></th>
   </tr>
 

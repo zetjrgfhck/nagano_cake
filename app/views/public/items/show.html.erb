@@ -23,12 +23,13 @@
              <%= form_with model: @cart_item do |f| %>
             <th><%= f.select :amount, [[1, 1], [2, 2], [3, 3], [4, 4], [5, 5]],include_blank: "個数を選択" %>
                 <%= f.hidden_field :item_id, :value => @item.id %>
+                <%= f.submit "カートに入れる" %>
+                <% end %>
             </th>
           </tr>
-            <%= f.submit "カートに入れる" %>
-            <% end %>
         </tbody>
       </table>
+      
     </div>
   </div>
 </div>
