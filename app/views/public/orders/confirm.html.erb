@@ -11,12 +11,12 @@
   <% @cart_items.each do |cart_item| %>
     <tr>
       <td>
-        <%= image_tag item.get_image(100, 100) %>
+        <%#= image_tag item.get_image(100, 100) %>
         <%= cart_item.item.name %>
         </td>
       <td><%= (cart_item.item.with_tax_price).to_i %></td>
       <td><%= cart_item.amount %></td>
-      <td><<% subtotal = ((cart_item.item.price*cart_item.amount)).to_i %>
+      <td><% subtotal = ((cart_item.item.price*cart_item.amount)).to_i %>
           <%= subtotal %>
       </td>
     </tr>
@@ -27,8 +27,8 @@
 <table>
   <tr>
     <th>送料</th>
-    <td><% @order.postage = 800 %>
-        <%= @order.postage %></td>
+    <td><% @order.shipping_cost = 800 %>
+        <%= @order.shipping_cost %></td>
   </tr>
   <tr>
     <th>商品合計</th>
@@ -36,7 +36,7 @@
   </tr>
   <tr>
     <th>請求金額</th>
-    <td> <%= @order.total_payment = total.to_i + order.postage %></td>
+    <td> <%= @order.total_payment = total.to_i + @order.shipping_cost %></td>
   </tr>
 </table>
 
@@ -48,18 +48,21 @@
 
       <tr>
         <th>お届け先</th>
-        <td><%= @order.postal_code %>
+        <td><%= @order.postal_code %></br>
             <%= @order.address %></br>
             <%= @order.name %></td></tr>
   </table>
 </div>
 
 <div>
-  <% from_with model: @order do |f| %>
+  <%= form_with model: @order, url: orders_path, method: :post do |f| %>
+  
     <%= f.hidden_field :postal_code %>
-    <%= f.hidden_field :adderess %>
+    <%= f.hidden_field :address %>
     <%= f.hidden_field :name %>
     <%= f.hidden_field :total_payment %>
     <%= f.hidden_field :payment_method %>
+    <%= f.hidden_field :shipping_cost %>
+    <%= f.submit "注文を確定する" %>
   <% end %>
 </div>

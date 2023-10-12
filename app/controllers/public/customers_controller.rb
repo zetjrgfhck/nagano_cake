@@ -10,7 +10,7 @@ class Public::CustomersController < ApplicationController
   def update
     @customer = current_customer
       if @customer.update(customer_params)
-        redirect_to customers_path
+        redirect_to customers_my_page_path
       else
         render :edit
       end
@@ -25,4 +25,12 @@ class Public::CustomersController < ApplicationController
     reset_session
     redirect_to root_path
   end
+
+private
+
+  def customer_params
+  	params.require(:customer).permit(:last_name, :first_name, :kana_last_name, :kana_first_name, :email, :postal_code, :address, :phone_numbar)
+  end
+
+
 end
