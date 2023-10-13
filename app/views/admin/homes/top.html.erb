@@ -13,12 +13,13 @@
     <% @orders.each do |order| %>
   <tr>
     <td><%= link_to admin_order_path(order) do %>
-        <%= created_at %>
-        <% end %></td>
+        <%= order.created_at %>
+        <% end %>
+    </td>
     <td>
-      <%= last_name_kana + first_name_kana(order.customer) %></td>
+      <%= order.customer.last_name + order.customer.first_name %></td>
     <td>
-      <%= order.order_detail.quantity %></td>
+      <%= order.order_details.sum(:quantity) %></td>
   </tr>
   <% end %>
   </tbody>
