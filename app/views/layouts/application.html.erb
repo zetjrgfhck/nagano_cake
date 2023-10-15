@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html>
   <head>
     <title>NaganoCake</title>
@@ -10,22 +9,15 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
-    <header>
-      <nav class="navbar navbar-expand-lg navbar-light">
-        <div class="container">
-          <span>
-            <% if admin_signed_in? %>
-            <li><%= link_to "NaganoCAKE", admin_root_path %></li>
+<header>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <% if admin_signed_in? %>
+    <%= link_to "NaganoCAKE", admin_root_path, class:"navbar-brand" %>
+    <% else %>
+    <%= link_to "NaganoCAKE", root_path, class:"navbar-brand" %>
+    <% end %>
 
-            <% else %>
-            <li><%= link_to "NaganoCAKE", root_path %></li>
-            <% end %>
-          </span>
-
-
-      <div class="collapse navbar-collapse" id="navbarNavDropdown" style>
-          <ul class="navbar-nav ml-auto">
+    <ul class="navbar-nav ml-auto navbar-right">
       <% if customer_signed_in? %>
         <li>
           <%= link_to "マイページ", customers_my_page_path, class:"nav-link text-dark" %>
@@ -76,14 +68,9 @@
         <li>
           <%= link_to "ログイン",new_customer_session_path, class:"nav-link text-dark" %>
         </li>
-
       <% end %>
-
-            </ul>
-          </div>
-        </div>
-      </nav>
-    </header>
-    <%= yield %>
-  </body>
+    </ul>
+  </nav>
+</header>
+<%= yield %>
 </html>
