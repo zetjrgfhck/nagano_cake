@@ -2,6 +2,7 @@
   <div class="col-md-8 offset-md-1">
     <div class="row">
     <h2>商品一覧</h2>
+    <h6><%= link_to "商品新規登録", new_admin_item_path %></h6>
       <table class="table table-hover table-inverse">
         <thead>
           <tr>
@@ -13,20 +14,15 @@
             <% @items.each do |item| %>
           <tr>
             <td>
-              <%= item_path(item.id) do %>
+              <%= item.id  %>
+            </td>
+            <td>
+              <%= link_to admin_item_path(item.id) do %>
+              <%= item.name %>
               <% end %>
             </td>
-
             <td>
-              <%= link_to item_path(item.id) do %>
-              <%= name.title %>
-              <% end %>
-            </td>
-
-            <td>
-              <%= item_path(item.id) do %>
               <%= item.price %>
-              <% end %>
             </td>
           </tr>
            <% end %>
@@ -34,5 +30,5 @@
       </table>
     </div>
   </div>
+<%= paginate @items %>
 </div>
-<%= paginate items %>

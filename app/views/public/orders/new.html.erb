@@ -1,6 +1,11 @@
-<h2>注文情報入力</h2>
-
+<div class="container">
+  <div class="row">
+  <h2>注文情報入力</h2>
+  </div>
+<div class="row">
 <h3>支払方法</h3>
+</div>
+<div class="row">
   <%= form_with model: @order, url: orders_confirm_path, method: :post do |f| %>
 <div>
   <%= f.radio_button :payment_method, "credit_card" %>
@@ -43,3 +48,5 @@
 <%= f.submit "確認画面へ進む" %>
 </div>
 <% end %>
+</div>
+</div>

@@ -1,11 +1,16 @@
+<div class="container">
+  <div class="row">
 <h3>マイページ</h3>
+ </div>
 
-<div>
+<div class="row">
   <h4>
   <span>登録情報</span>
   <span><%=link_to "編集する", customers_informetion_edit_path, class: 'btn btn-success' %><span>
   </h4>
+</div>
 
+<div class="row">
 <table>
   <tr>
     <th>氏名</th>
@@ -34,4 +39,5 @@
     <td><%= @customer.email %></td>
   </tr>
 </table>
+</div>
 </div>

@@ -1,5 +1,8 @@
-<h2>注文履歴詳細</h2>
-<div>
+<div class="container">
+  <div class="row">
+    <h2>注文履歴詳細</h2>
+  </div>
+<div class="row">
 <table>
   <tr>
     <th>購入者</th>
@@ -26,7 +29,7 @@
 </table>
 </div>
 
-<div>
+<div class="row">
   <table>
     <tr>
       <th>商品合計</th>
@@ -41,4 +44,5 @@
       <td><%= @order.total_payment + @order.shipping_cost %></td>
     </tr>
   </table>
+</div>
 </div>

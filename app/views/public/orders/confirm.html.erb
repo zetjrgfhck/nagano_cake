@@ -1,4 +1,5 @@
-<h2>注文情報確認</h2>
+<div class="container">
+    <h2>注文情報確認</h2>
 <table>
   <tr>
     <th>商品名</th>
@@ -56,7 +57,7 @@
 
 <div>
   <%= form_with model: @order, url: orders_path, method: :post do |f| %>
-  
+
     <%= f.hidden_field :postal_code %>
     <%= f.hidden_field :address %>
     <%= f.hidden_field :name %>
@@ -65,4 +66,5 @@
     <%= f.hidden_field :shipping_cost %>
     <%= f.submit "注文を確定する" %>
   <% end %>
+</div>
 </div>
