@@ -1,9 +1,10 @@
 class Public::OrdersController < ApplicationController
   before_action :authenticate_customer!
-  
-  
+  before_action :function, only:[:new, :create, :confirm]
+
   def index
     @orders = current_customer.orders
+
   end
 
   def new
@@ -23,7 +24,7 @@ class Public::OrdersController < ApplicationController
       @order_detail = OrderDetail.new #初期化
       @order_detail.item_id = cart_item.item_id
       @order_detail.quantity = cart_item.amount
-      @order_detail.purchase_price = (cart_item.item.price*1.08).floor
+      @order_detail.purchase_price = (cart_item.item.price*1.10).floor
       @order_detail.order_id =  @order.id
       @order_detail.save
     end
@@ -44,7 +45,7 @@ class Public::OrdersController < ApplicationController
         # @order.address = ship.address
         # @order.name = ship.name
 
-    elsif params[:order][:address_option] = "2"
+    elsif params[:order][:address_option] == "2"
       @order.postal_code = params[:order][:postal_code]
       @order.address = params[:order][:address]
       @order.name = params[:order][:name]
@@ -62,6 +63,12 @@ class Public::OrdersController < ApplicationController
 
   def order_params
     params.require(:order).permit(:postal_code, :address, :name, :payment_method, :total_payment, :shipping_cost)
+  end
+
+  def function
+    if current_customer.cart_items.empty?
+      redirect_to cart_items_path
+    end
   end
 
 end

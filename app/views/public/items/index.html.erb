@@ -3,12 +3,14 @@
     <div class="row">
     <h2>商品一覧</h2>
     </div>
-    
+
 <div class="row">
  <table class="table">
         <thead>
           <tr>
-            <th>商品ID</th>  <th>商品名</th>  <th>税抜き価格</th>
+            <th>商品イメージ</th>
+            <th>商品名</th>
+            <th>税抜き価格</th>
           </tr>
         </thead>
 
@@ -16,7 +18,7 @@
             <% @items.each do |item| %>
           <tr>
             <td>
-              <%= item.id  %>
+              <%= image_tag item.image, size: "100x100" %>
             </td>
             <td>
               <%= link_to item_path(item.id) do %>
