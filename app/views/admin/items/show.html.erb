@@ -12,17 +12,19 @@
         <tbody>
           <tr>
             <th>商品名</th>
-            <th><%= @item.name %>
+            <td><%= @item.name %></td>
           </tr>
 
             <tr>
               <th>商品説明</th>
-              <th><%= @item.introduction %></th>
+              <td><%= @item.introduction %></td>
             </tr>
 
           <tr>
             <th>税込価格（税抜き価格）</th>
-            <th><%= @item.price %></th>
+            <td><%= (@item.price * 1.1).floor %> <%# 税込 %>
+                (<%= @item.price %>)円 <%# 税抜き %>
+            </td>
           </tr>
 
           <td class="btn btm-sm btn-success">
